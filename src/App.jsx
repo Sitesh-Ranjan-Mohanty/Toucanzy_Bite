@@ -5,8 +5,7 @@ const products = [
     id: "mango",
     name: "Mango",
     description: "Our customer-favourite tropical fruit, with a bright, sunny crunch",
-    weight: "25 g",
-    price: 169,
+    variants: [{ id: "50g", label: "50 g", price: 249 }, { id: "100g", label: "100 g", price: 449 }],
     category: "Tropical",
     tag: "BESTSELLER",
     bestSeller: true,
@@ -18,8 +17,7 @@ const products = [
     id: "pink-guava",
     name: "Pink Guava",
     description: "Sweet, fragrant guava with a pretty pink centre",
-    weight: null,
-    price: null,
+    variants: [{ id: "50g", label: "50 g", price: 249 }, { id: "100g", label: "100 g", price: 449 }],
     category: "Tropical",
     tag: "",
     color: "#f7e6df",
@@ -30,8 +28,7 @@ const products = [
     id: "jackfruit",
     name: "Jackfruit",
     description: "Golden tropical fruit with a wonderfully big crunch",
-    weight: null,
-    price: null,
+    variants: [{ id: "50g", label: "50 g", price: 259 }, { id: "100g", label: "100 g", price: 469 }],
     category: "Tropical",
     tag: "",
     color: "#f5ebc9",
@@ -42,8 +39,7 @@ const products = [
     id: "apple",
     name: "Apple",
     description: "Crispy little bites of orchard goodness",
-    weight: "25 g",
-    price: 139,
+    variants: [{ id: "50g", label: "50 g", price: 269 }, { id: "100g", label: "100 g", price: 489 }],
     category: "Orchard",
     tag: "",
     color: "#e8eddc",
@@ -54,8 +50,7 @@ const products = [
     id: "banana",
     name: "Banana",
     description: "Light, lovely, naturally sweet",
-    weight: "25 g",
-    price: 129,
+    variants: [{ id: "50g", label: "50 g", price: 159 }, { id: "100g", label: "100 g", price: 269 }],
     category: "Orchard",
     tag: "",
     color: "#f2edce",
@@ -66,8 +61,7 @@ const products = [
     id: "pineapple",
     name: "Pineapple",
     description: "A sunny, tangy crunch with tropical island energy",
-    weight: "25 g",
-    price: 159,
+    variants: [{ id: "50g", label: "50 g", price: 259 }, { id: "100g", label: "100 g", price: 469 }],
     category: "Tropical",
     tag: "",
     color: "#f4e9bd",
@@ -78,8 +72,7 @@ const products = [
     id: "strawberry",
     name: "Strawberry",
     description: "Sweet, sunny strawberry slices made extra crunchy",
-    weight: "20 g",
-    price: 149,
+    variants: [{ id: "50g", label: "50 g", price: 279 }, { id: "100g", label: "100 g", price: 509 }],
     category: "Berries",
     tag: "",
     color: "#f6e5df",
@@ -90,8 +83,7 @@ const products = [
     id: "kiwi",
     name: "Kiwi",
     description: "A tangy little fruit with a fresh, zippy crunch",
-    weight: null,
-    price: null,
+    variants: [{ id: "50g", label: "50 g", price: 299 }, { id: "100g", label: "100 g", price: 549 }],
     category: "Berries",
     tag: "",
     color: "#e8eedb",
@@ -99,11 +91,10 @@ const products = [
     alt: "Dried kiwi slices",
   },
   {
-    id: "java-plum",
-    name: "Java Plum",
-    description: "Deep purple java plum with sweet-and-tangy flavour",
-    weight: null,
-    price: null,
+    id: "black-jamun",
+    name: "Black Jamun",
+    description: "Deep purple jamun with a sweet-and-tangy flavour",
+    variants: [{ id: "50g", label: "50 g", price: 259 }, { id: "100g", label: "100 g", price: 469 }],
     category: "Berries",
     tag: "",
     color: "#e8e4f1",
@@ -114,15 +105,51 @@ const products = [
     id: "custard-apple",
     name: "Custard Apple",
     description: "A softly sweet orchard fruit with a creamy crunch",
-    weight: null,
-    price: null,
+    variants: [{ id: "50g", label: "50 g", price: 249 }, { id: "100g", label: "100 g", price: 449 }],
     category: "Orchard",
     tag: "",
     color: "#edf0df",
     image: "/images/custard-apple.webp",
     alt: "Fresh custard apples",
   },
+  {
+    id: "combo-eight",
+    name: "Any 8 Fruit Combo",
+    description: "Eight of your favourite fruits, with 10 g of each in one joyful mix",
+    variants: [{ id: "combo", label: "8 fruits × 10 g each", price: 449 }],
+    category: "Combos",
+    tag: "BEST VALUE",
+    color: "#f4e8d9",
+    image: "/images/combo-eight.webp",
+    alt: "A colourful mix of dried fruit pieces",
+    isCombo: true,
+  },
+  {
+    id: "combo-five",
+    name: "Any 5 Fruit Combo",
+    description: "Five fruity favourites, with 10 g of each in a handy combo",
+    variants: [{ id: "combo", label: "5 fruits × 10 g each", price: 299 }],
+    category: "Combos",
+    tag: "FRUITY FAVE",
+    color: "#f4e8d9",
+    image: "/images/combo-five.webp",
+    alt: "A mix of dried fruit for a snack combo",
+    isCombo: true,
+  },
 ];
+
+const deliveryStates = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+  "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry",
+];
+
+const getDeliveryFee = (state) =>
+  state === "Telangana" || state === "Andhra Pradesh" ? 75 : state ? 85 : null;
 
 const formatPrice = (amount) =>
   `₹${amount.toLocaleString("en-IN")}`;
@@ -175,14 +202,36 @@ function ProductVisual({ product }) {
 function App() {
   const [cart, setCart] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("toucanzy-cart") || "{}");
+      const savedCart = JSON.parse(localStorage.getItem("toucanzy-cart") || "{}");
+      return Object.entries(savedCart).reduce((nextCart, [key, quantity]) => {
+        if (!Number.isInteger(quantity) || quantity <= 0) return nextCart;
+        const [productId, variantId, selection = ""] = key.split(":");
+        const product = products.find((candidate) => candidate.id === productId);
+        const isValidRegularItem = product && !product.isCombo
+          && product.variants.some((variant) => variant.id === variantId)
+          && !selection;
+        const selectedFruitIds = selection.split(",").filter(Boolean);
+        const comboSelectionSize = productId === "combo-five" ? 5 : 8;
+        const isValidComboItem = product?.isCombo
+          && variantId === "combo"
+          && selectedFruitIds.length === comboSelectionSize
+          && new Set(selectedFruitIds).size === comboSelectionSize
+          && selectedFruitIds.every((id) => products.some((fruit) => fruit.id === id && !fruit.isCombo));
+        if (isValidRegularItem || isValidComboItem) {
+          nextCart[key] = quantity;
+        }
+        return nextCart;
+      }, {});
     } catch {
       return {};
     }
   });
+  const [deliveryState, setDeliveryState] = useState(() => localStorage.getItem("toucanzy-delivery-state") || "");
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedComboFruits, setSelectedComboFruits] = useState([]);
   const [detailQuantity, setDetailQuantity] = useState(1);
   const [activeCategory, setActiveCategory] = useState("All fruits");
   const [searchQuery, setSearchQuery] = useState("");
@@ -193,17 +242,26 @@ function App() {
     localStorage.setItem("toucanzy-cart", JSON.stringify(cart));
   }, [cart]);
 
-  const cartItems = useMemo(
-    () => products.filter((product) => cart[product.id]).map((product) => ({
-      ...product,
-      quantity: cart[product.id],
-    })),
-    [cart],
-  );
+  useEffect(() => {
+    localStorage.setItem("toucanzy-delivery-state", deliveryState);
+  }, [deliveryState]);
+
+  const cartItems = useMemo(() => Object.entries(cart).flatMap(([cartKey, quantity]) => {
+    if (!quantity) return [];
+    const [productId, variantId, selection = ""] = cartKey.split(":");
+    const product = products.find((candidate) => candidate.id === productId);
+    const variant = product?.variants.find((candidate) => candidate.id === variantId);
+    if (!product || !variant) return [];
+    const selectedFruitIds = product.isCombo ? selection.split(",").filter(Boolean) : [];
+    const selectedFruitNames = selectedFruitIds.map((id) =>
+      products.find((candidate) => candidate.id === id)?.name,
+    ).filter(Boolean);
+    return [{ ...product, ...variant, cartKey, quantity, selectedFruitNames }];
+  }), [cart]);
   const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = cartItems.some((item) => item.price === null)
-    ? null
-    : cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const deliveryFee = getDeliveryFee(deliveryState);
+  const orderTotal = subtotal + (deliveryFee || 0);
   const visibleProducts = products.filter((product) => {
     const matchesCategory = activeCategory === "All fruits"
       || (activeCategory === "Bestsellers" ? product.bestSeller : product.category === activeCategory);
@@ -211,18 +269,28 @@ function App() {
     return matchesCategory && matchesSearch;
   });
 
-  const updateQuantity = (id, amount) => {
+  const updateQuantity = (cartKey, amount) => {
     setCart((current) => {
       const next = { ...current };
-      const quantity = (next[id] || 0) + amount;
-      if (quantity <= 0) delete next[id];
-      else next[id] = quantity;
+      const quantity = (next[cartKey] || 0) + amount;
+      if (quantity <= 0) delete next[cartKey];
+      else next[cartKey] = quantity;
       return next;
     });
   };
 
-  const addToCart = (product, quantity = 1) => {
-    updateQuantity(product.id, quantity);
+  const openProduct = (product) => {
+    setSelectedProduct(product);
+    setSelectedVariant(product.variants[0]);
+    setSelectedComboFruits([]);
+    setDetailQuantity(1);
+  };
+
+  const addToCart = (product, variant, quantity = 1, fruitIds = []) => {
+    const selection = product.isCombo
+      ? `:${products.filter((fruit) => fruitIds.includes(fruit.id)).map((fruit) => fruit.id).join(",")}`
+      : "";
+    updateQuantity(`${product.id}:${variant.id}${selection}`, quantity);
     setNotice(`${product.name} added to your bag`);
     window.setTimeout(() => setNotice(""), 2400);
   };
@@ -232,11 +300,10 @@ function App() {
     const formData = new FormData(event.currentTarget);
     const customer = Object.fromEntries(formData.entries());
     const lines = cartItems.map((item) => {
-      const packSize = item.weight || "pack size to confirm";
-      const itemPrice = item.price === null
-        ? "price to confirm"
-        : formatPrice(item.price * item.quantity);
-      return `• ${item.name} (${packSize}) × ${item.quantity} — ${itemPrice}`;
+      const fruitSelection = item.selectedFruitNames.length
+        ? ` — includes ${item.selectedFruitNames.join(", ")}`
+        : "";
+      return `• ${item.name} (${item.label})${fruitSelection} × ${item.quantity} — ${formatPrice(item.price * item.quantity)}`;
     });
     const address = [
       customer.address,
@@ -248,8 +315,9 @@ function App() {
       "",
       ...lines,
       "",
-      `Total: ${subtotal === null ? "To be confirmed on WhatsApp" : formatPrice(subtotal)}`,
-      ...(subtotal === null ? ["Some pack sizes and prices are to be confirmed."] : []),
+      `Subtotal: ${formatPrice(subtotal)}`,
+      `Delivery to ${customer.state}: ${formatPrice(getDeliveryFee(customer.state))}`,
+      `Order total: ${formatPrice(subtotal + getDeliveryFee(customer.state))}`,
       "",
       "Customer details",
       `Name: ${customer.name}`,
@@ -337,7 +405,7 @@ function App() {
           </div>
 
           <div className="category-row" aria-label="Filter products by category">
-            {["All fruits", "Bestsellers", "Tropical", "Berries", "Orchard"].map((category, index) => (
+            {["All fruits", "Bestsellers", "Combos", "Tropical", "Berries", "Orchard"].map((category, index) => (
               <button className={`category-pill${activeCategory === category ? " category-active" : ""}`} key={category} onClick={() => setActiveCategory(category)}>
                 {index === 0 && <Icon name="grid" size={15} />}
                 {category === "Bestsellers" && <span className="bestseller-sparkle" aria-hidden="true">✦</span>}
@@ -353,24 +421,24 @@ function App() {
               {visibleProducts.map((product) => (
                 <article className="product-card" key={product.id}>
                   <div className="product-photo" style={{ backgroundColor: product.color }}>
-                    <button className="product-image-button" onClick={() => { setSelectedProduct(product); setDetailQuantity(1); }} aria-label={`View ${product.name} details`}>
+                    <button className="product-image-button" onClick={() => openProduct(product)} aria-label={`View ${product.name} details`}>
                       <ProductVisual product={product} />
                       {product.tag && <span className="product-tag">{product.tag}</span>}
                     </button>
                     <button className={`favorite-button${favorites.includes(product.id) ? " favorite-active" : ""}`} aria-label={`${favorites.includes(product.id) ? "Remove" : "Add"} ${product.name} ${favorites.includes(product.id) ? "from" : "to"} favorites`} onClick={() => setFavorites((current) => current.includes(product.id) ? current.filter((id) => id !== product.id) : [...current, product.id])}>
                       <Icon name="heart" size={17} />
                     </button>
-                    <button className="quick-add" onClick={() => addToCart(product)} aria-label={`Add ${product.name} to cart`}>
+                    <button className="quick-add" onClick={() => openProduct(product)} aria-label={`Choose a pack size for ${product.name}`}>
                       <Icon name="plus" size={18} />
                     </button>
                   </div>
                   <div className="product-info">
                     <div className="product-title-row">
-                      <button className="product-name" onClick={() => { setSelectedProduct(product); setDetailQuantity(1); }}>{product.name}</button>
-                      <span className="product-price">{product.price === null ? "Price on WhatsApp" : formatPrice(product.price)}</span>
+                      <button className="product-name" onClick={() => openProduct(product)}>{product.name}</button>
+                      <span className="product-price">{product.variants.length === 1 ? formatPrice(product.variants[0].price) : `From ${formatPrice(product.variants[0].price)}`}</span>
                     </div>
                     <p>{product.description}</p>
-                    <div className="product-meta"><span>{product.weight || "Pack size TBC"} <i /> {product.category}</span><button onClick={() => addToCart(product)}>Add to cart <Icon name="arrow" size={14} /></button></div>
+                    <div className="product-meta"><span>{product.variants.length === 1 ? product.variants[0].label : "50 g · 100 g"} <i /> {product.category}</span><button onClick={() => openProduct(product)}>Choose pack <Icon name="arrow" size={14} /></button></div>
                   </div>
                 </article>
               ))}
@@ -408,7 +476,7 @@ function App() {
       {(cartOpen || checkoutOpen || selectedProduct) && <button className="overlay" aria-label="Close dialog" onClick={() => { setCartOpen(false); setCheckoutOpen(false); setSelectedProduct(null); }} />}
 
       {selectedProduct && (
-        <section className="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
+        <section className={`product-modal${selectedProduct.isCombo ? " product-modal-combo" : ""}`} role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
           <button className="icon-button modal-close" onClick={() => setSelectedProduct(null)} aria-label="Close product details"><Icon name="close" /></button>
           <div className="detail-image" style={{ backgroundColor: selectedProduct.color }}>
             <ProductVisual product={selectedProduct} />
@@ -419,12 +487,54 @@ function App() {
             <h2 id="product-modal-title">{selectedProduct.name}</h2>
             <p className="detail-description">{selectedProduct.description}. Light, crunchy, and ready for whenever snack o'clock hits.</p>
             <div className="detail-perks"><span><Icon name="leaf" size={16} /> Real fruit</span><span><Icon name="heart" size={15} /> Made for sharing</span></div>
-            <div className="detail-weight"><span>Pack size</span><strong>{selectedProduct.weight || "Confirm on WhatsApp"}</strong></div>
+            {selectedProduct.isCombo ? (
+              <section className="combo-fruit-picker" aria-labelledby="combo-picker-title">
+                <div className="combo-picker-heading">
+                  <h3 id="combo-picker-title">Choose {selectedProduct.id === "combo-five" ? 5 : 8} fruits</h3>
+                  <span>{selectedComboFruits.length} / {selectedProduct.id === "combo-five" ? 5 : 8} selected</span>
+                </div>
+                <p>Pick different fruits for your combo. Each selection adds 10 g.</p>
+                <div className="combo-fruit-grid">
+                  {products.filter((product) => !product.isCombo).map((fruit) => {
+                    const isSelected = selectedComboFruits.includes(fruit.id);
+                    const selectionLimit = selectedProduct.id === "combo-five" ? 5 : 8;
+                    const isFull = selectedComboFruits.length === selectionLimit;
+                    return (
+                      <button
+                        className={`combo-fruit-option${isSelected ? " combo-fruit-selected" : ""}`}
+                        type="button"
+                        key={fruit.id}
+                        aria-pressed={isSelected}
+                        disabled={!isSelected && isFull}
+                        onClick={() => setSelectedComboFruits((current) =>
+                          isSelected ? current.filter((id) => id !== fruit.id) : [...current, fruit.id],
+                        )}
+                      >
+                        <span className="combo-fruit-check" aria-hidden="true">{isSelected ? "✓" : "+"}</span>
+                        <span>{fruit.name}</span>
+                        <small>10 g</small>
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            ) : (
+              <fieldset className="pack-options">
+                <legend>Choose your pack size</legend>
+                {selectedProduct.variants.map((variant) => (
+                  <label className={`pack-option${selectedVariant?.id === variant.id ? " pack-option-selected" : ""}`} key={variant.id}>
+                    <input type="radio" name="pack-size" value={variant.id} checked={selectedVariant?.id === variant.id} onChange={() => setSelectedVariant(variant)} />
+                    <span>{variant.label}</span>
+                    <strong>{formatPrice(variant.price)}</strong>
+                  </label>
+                ))}
+              </fieldset>
+            )}
             <div className="detail-bottom">
-              <div className={`detail-price${selectedProduct.price === null ? " detail-price-unset" : ""}`}>{selectedProduct.price === null ? "Price on WhatsApp" : <>{formatPrice(selectedProduct.price)}<span> / pack</span></>}</div>
+              <div className="detail-price">{formatPrice(selectedVariant.price)}<span> / pack</span></div>
               <div className="quantity-control"><button onClick={() => setDetailQuantity((quantity) => Math.max(1, quantity - 1))} aria-label="Decrease quantity"><Icon name="minus" size={14} /></button><span>{detailQuantity}</span><button onClick={() => setDetailQuantity((quantity) => quantity + 1)} aria-label="Increase quantity"><Icon name="plus" size={14} /></button></div>
             </div>
-            <button className="button button-dark checkout-button" onClick={() => { addToCart(selectedProduct, detailQuantity); setSelectedProduct(null); }}>Add to cart{selectedProduct.price === null ? "" : ` · ${formatPrice(selectedProduct.price * detailQuantity)}`} <Icon name="arrow" size={17} /></button>
+            <button className="button button-dark checkout-button" disabled={selectedProduct.isCombo && selectedComboFruits.length !== (selectedProduct.id === "combo-five" ? 5 : 8)} onClick={() => { addToCart(selectedProduct, selectedVariant, detailQuantity, selectedComboFruits); setSelectedProduct(null); }}>Add to cart · {formatPrice(selectedVariant.price * detailQuantity)} <Icon name="arrow" size={17} /></button>
           </div>
         </section>
       )}
@@ -446,15 +556,26 @@ function App() {
             <>
               <div className="cart-items">
                 {cartItems.map((item) => (
-                  <div className="cart-item" key={item.id}>
+                  <div className="cart-item" key={item.cartKey}>
                     <div className="cart-item-thumb"><ProductVisual product={item} /></div>
-                    <div className="cart-item-copy"><h3>{item.name}</h3><p>{item.weight || "Pack size TBC"} · {item.price === null ? "Price on WhatsApp" : formatPrice(item.price)}</p><div className="quantity-control"><button onClick={() => updateQuantity(item.id, -1)} aria-label={`Remove one ${item.name}`}><Icon name="minus" size={14} /></button><span>{item.quantity}</span><button onClick={() => updateQuantity(item.id, 1)} aria-label={`Add one ${item.name}`}><Icon name="plus" size={14} /></button></div></div>
-                    <strong>{item.price === null ? "Confirm price" : formatPrice(item.price * item.quantity)}</strong>
+                    <div className="cart-item-copy"><h3>{item.name}</h3><p>{item.label} · {formatPrice(item.price)} each</p>{item.selectedFruitNames.length > 0 && <p className="cart-combo-fruits">{item.selectedFruitNames.join(", ")}</p>}<div className="quantity-control"><button onClick={() => updateQuantity(item.cartKey, -1)} aria-label={`Remove one ${item.name} (${item.label})`}><Icon name="minus" size={14} /></button><span>{item.quantity}</span><button onClick={() => updateQuantity(item.cartKey, 1)} aria-label={`Add one ${item.name} (${item.label})`}><Icon name="plus" size={14} /></button></div></div>
+                    <strong>{formatPrice(item.price * item.quantity)}</strong>
                   </div>
                 ))}
               </div>
-              <div className="delivery-note"><span className="delivery-note-icon">✳</span><div><strong>Delivery, made simple</strong><p>We’ll confirm delivery details with you on WhatsApp.</p></div></div>
-              <div className="cart-summary"><div><span>Subtotal</span><strong>{subtotal === null ? "Confirm on WhatsApp" : formatPrice(subtotal)}</strong></div><p>Shipping and any unlisted prices or pack sizes will be confirmed when you place your order.</p><button className="button button-dark checkout-button" onClick={() => { setCartOpen(false); setCheckoutOpen(true); }}>Continue to checkout <Icon name="arrow" size={17} /></button></div>
+              <div className="delivery-note"><span className="delivery-note-icon">✳</span><div><strong>Delivery, made simple</strong><p>₹75 to Telangana and Andhra Pradesh · ₹85 to other states and UTs.</p></div></div>
+              <div className="cart-summary">
+                <label className="delivery-state-field">Delivery state or union territory
+                  <select value={deliveryState} onChange={(event) => setDeliveryState(event.target.value)} required>
+                    <option value="">Choose your state / UT</option>
+                    {deliveryStates.map((state) => <option key={state} value={state}>{state}</option>)}
+                  </select>
+                </label>
+                <div><span>Items subtotal</span><strong>{formatPrice(subtotal)}</strong></div>
+                <div><span>Delivery</span><strong>{deliveryFee === null ? "Choose state" : formatPrice(deliveryFee)}</strong></div>
+                <div className="cart-total-row"><span>Order total</span><strong>{deliveryFee === null ? "—" : formatPrice(orderTotal)}</strong></div>
+                <button className="button button-dark checkout-button" onClick={() => { setCartOpen(false); setCheckoutOpen(true); }}>Continue to checkout <Icon name="arrow" size={17} /></button>
+              </div>
             </>
           )}
         </aside>
@@ -470,11 +591,11 @@ function App() {
               <label className="field field-full">Full delivery address<textarea name="address" autoComplete="street-address" rows="2" placeholder="House / flat, street, area" required /></label>
               <label className="field field-full">Landmark <span className="optional">(optional)</span><input name="landmark" placeholder="A nearby landmark" /></label>
               <label className="field">City<input name="city" autoComplete="address-level2" placeholder="Your city" required /></label>
-              <label className="field">State<input name="state" autoComplete="address-level1" placeholder="Your state" required /></label>
+              <label className="field">State / UT<select name="state" autoComplete="address-level1" value={deliveryState} onChange={(event) => setDeliveryState(event.target.value)} required><option value="">Choose state / UT</option>{deliveryStates.map((state) => <option key={state} value={state}>{state}</option>)}</select></label>
               <label className="field field-full">PIN code<input name="pincode" inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{6}" placeholder="6-digit PIN code" required /></label>
               <label className="field field-full">Anything else? <span className="optional">(optional)</span><textarea name="note" rows="2" placeholder="Order notes or delivery instructions" /></label>
             </div>
-            <div className="checkout-total"><span>{itemCount} {itemCount === 1 ? "item" : "items"} · Order total</span><strong>{subtotal === null ? "Confirm on WhatsApp" : formatPrice(subtotal)}</strong></div>
+            <div className="checkout-total"><span>{itemCount} {itemCount === 1 ? "item" : "items"} · {formatPrice(subtotal)} + {deliveryFee === null ? "delivery" : formatPrice(deliveryFee)} delivery</span><strong>{deliveryFee === null ? "Choose state" : formatPrice(orderTotal)}</strong></div>
             <button className="button button-dark checkout-button" type="submit">Order now on WhatsApp <Icon name="arrow" size={17} /></button>
             <p className="checkout-disclaimer">Your order details will open in WhatsApp, ready to send to Toucanzy Bite.</p>
           </form>
