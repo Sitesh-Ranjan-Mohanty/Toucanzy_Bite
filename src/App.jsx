@@ -2,32 +2,57 @@ import React, { useEffect, useMemo, useState } from "react";
 
 const products = [
   {
-    id: "strawberry",
-    name: "Strawberry Pop",
-    description: "Sweet, sunny strawberry slices",
-    weight: "20 g",
-    price: 149,
-    category: "Berries",
-    tag: "BESTSELLER",
-    color: "#f6e5df",
-    image: "photo-1464965911861-746a04b4bca6",
-    alt: "Fresh ripe strawberries",
-  },
-  {
     id: "mango",
-    name: "Mango Masti",
-    description: "A little taste of tropical sunshine",
+    name: "Mango",
+    description: "Our customer-favourite tropical fruit, with a bright, sunny crunch",
     weight: "25 g",
     price: 169,
     category: "Tropical",
-    tag: "TROPICAL FAVE",
+    tag: "BESTSELLER",
+    bestSeller: true,
     color: "#f7e9c9",
     image: "photo-1553279768-865429fa0078",
     alt: "Golden ripe mango",
   },
   {
+    id: "pink-guava",
+    name: "Pink Guava",
+    description: "Sweet, fragrant guava with a pretty pink centre",
+    weight: null,
+    price: null,
+    category: "Tropical",
+    tag: "",
+    color: "#f7e6df",
+    emoji: "🍐",
+    alt: "Pink guava",
+  },
+  {
+    id: "jackfruit",
+    name: "Jackfruit",
+    description: "Golden tropical fruit with a wonderfully big crunch",
+    weight: null,
+    price: null,
+    category: "Tropical",
+    tag: "",
+    color: "#f5ebc9",
+    emoji: "🍈",
+    alt: "Fresh jackfruit",
+  },
+  {
+    id: "apple",
+    name: "Apple",
+    description: "Crispy little bites of orchard goodness",
+    weight: "25 g",
+    price: 139,
+    category: "Orchard",
+    tag: "",
+    color: "#e8eddc",
+    image: "photo-1560806887-1e4cd0b6cbd6",
+    alt: "Fresh red and green apples",
+  },
+  {
     id: "banana",
-    name: "Banana Bites",
+    name: "Banana",
     description: "Light, lovely, naturally sweet",
     weight: "25 g",
     price: 129,
@@ -39,39 +64,63 @@ const products = [
   },
   {
     id: "pineapple",
-    name: "Pineapple Party",
-    description: "A tangy crunch with island energy",
+    name: "Pineapple",
+    description: "A sunny, tangy crunch with tropical island energy",
     weight: "25 g",
     price: 159,
     category: "Tropical",
-    tag: "TANGY & FUN",
+    tag: "",
     color: "#f4e9bd",
     image: "photo-1550258987-190a2d41a8ba",
     alt: "Fresh golden pineapple",
   },
   {
-    id: "blueberry",
-    name: "Blueberry Bliss",
-    description: "Tiny berries, big happy crunch",
+    id: "strawberry",
+    name: "Strawberry",
+    description: "Sweet, sunny strawberry slices made extra crunchy",
     weight: "20 g",
-    price: 189,
+    price: 149,
     category: "Berries",
     tag: "",
-    color: "#e5e3ef",
-    image: "photo-1498557850523-fd3d118b962e",
-    alt: "Fresh blueberries",
+    color: "#f6e5df",
+    image: "photo-1464965911861-746a04b4bca6",
+    alt: "Fresh ripe strawberries",
   },
   {
-    id: "apple",
-    name: "Apple Crumbles",
-    description: "Crispy little bites of orchard goodness",
-    weight: "25 g",
-    price: 139,
+    id: "kiwi",
+    name: "Kiwi",
+    description: "A tangy little fruit with a fresh, zippy crunch",
+    weight: null,
+    price: null,
+    category: "Berries",
+    tag: "",
+    color: "#e8eedb",
+    emoji: "🥝",
+    alt: "Fresh kiwi fruit",
+  },
+  {
+    id: "java-plum",
+    name: "Java Plum",
+    description: "Deep purple java plum with sweet-and-tangy flavour",
+    weight: null,
+    price: null,
+    category: "Berries",
+    tag: "",
+    color: "#e8e4f1",
+    emoji: "🫐",
+    alt: "Fresh java plums",
+  },
+  {
+    id: "custard-apple",
+    name: "Custard Apple",
+    description: "A softly sweet orchard fruit with a creamy crunch",
+    weight: null,
+    price: null,
     category: "Orchard",
     tag: "",
-    color: "#e8eddc",
-    image: "photo-1560806887-1e4cd0b6cbd6",
-    alt: "Fresh red and green apples",
+    color: "#edf0df",
+    emoji: "🍏",
+    alt: "Fresh custard apple",
   },
 ];
 
@@ -119,6 +168,23 @@ function Brand({ light = false }) {
   );
 }
 
+function ProductVisual({ product }) {
+  if (product.image) {
+    return <img src={imageUrl(product.image)} alt={product.alt} loading="lazy" />;
+  }
+  return (
+    <div
+      className="fruit-art"
+      role="img"
+      aria-label={product.alt}
+      style={{ backgroundColor: product.color }}
+    >
+      <span>{product.emoji}</span>
+      <i aria-hidden="true">✳</i>
+    </div>
+  );
+}
+
 function App() {
   const [cart, setCart] = useState(() => {
     try {
@@ -148,9 +214,12 @@ function App() {
     [cart],
   );
   const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItems.some((item) => item.price === null)
+    ? null
+    : cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const visibleProducts = products.filter((product) => {
-    const matchesCategory = activeCategory === "All fruits" || product.category === activeCategory;
+    const matchesCategory = activeCategory === "All fruits"
+      || (activeCategory === "Bestsellers" ? product.bestSeller : product.category === activeCategory);
     const matchesSearch = `${product.name} ${product.description}`.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
@@ -175,9 +244,13 @@ function App() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const customer = Object.fromEntries(formData.entries());
-    const lines = cartItems.map(
-      (item) => `• ${item.name} (${item.weight}) × ${item.quantity} — ${formatPrice(item.price * item.quantity)}`,
-    );
+    const lines = cartItems.map((item) => {
+      const packSize = item.weight || "pack size to confirm";
+      const itemPrice = item.price === null
+        ? "price to confirm"
+        : formatPrice(item.price * item.quantity);
+      return `• ${item.name} (${packSize}) × ${item.quantity} — ${itemPrice}`;
+    });
     const address = [
       customer.address,
       customer.landmark,
@@ -188,7 +261,8 @@ function App() {
       "",
       ...lines,
       "",
-      `Total: ${formatPrice(subtotal)}`,
+      `Total: ${subtotal === null ? "To be confirmed on WhatsApp" : formatPrice(subtotal)}`,
+      ...(subtotal === null ? ["Some pack sizes and prices are to be confirmed."] : []),
       "",
       "Customer details",
       `Name: ${customer.name}`,
@@ -245,17 +319,17 @@ function App() {
 
         <section className="promo-card" aria-label="Toucanzy Bite introduction">
           <div className="promo-copy">
-            <span className="promo-label"><span /> LITTLE BITES, BIG JOY</span>
-            <h2>Snack happy.<br />Stay <span>fruity.</span></h2>
-            <p>Freeze-dried fruit that brings a little crunch to your day.</p>
+            <span className="promo-label"><span /> OUR NO. 1 FRUIT</span>
+            <h2>Mango magic.<br /><span>Big crunch.</span></h2>
+            <p>Meet the mango everyone loves, freeze-dried for a sunny little crunch.</p>
             <a className="button button-dark" href="#shop">Explore the good stuff <Icon name="arrow" size={16} /></a>
             <span className="promo-footnote">100% FRUIT · ZERO FUSS</span>
           </div>
           <div className="promo-art">
             <span className="promo-orbit promo-orbit-one" />
             <span className="promo-orbit promo-orbit-two" />
-            <img src={imageUrl("photo-1464965911861-746a04b4bca6")} alt="Fresh strawberries, the inspiration for Strawberry Pop" />
-            <span className="promo-badge">BERRY<br />GOOD!</span>
+            <img src={imageUrl("photo-1553279768-865429fa0078")} alt="Golden ripe mango, our bestselling fruit" />
+            <span className="promo-badge">OUR<br />BESTSELLER</span>
             <span className="promo-sparkle promo-sparkle-one">✳</span>
             <span className="promo-sparkle promo-sparkle-two">✳</span>
           </div>
@@ -276,9 +350,10 @@ function App() {
           </div>
 
           <div className="category-row" aria-label="Filter products by category">
-            {["All fruits", "Berries", "Tropical", "Orchard"].map((category, index) => (
+            {["All fruits", "Bestsellers", "Tropical", "Berries", "Orchard"].map((category, index) => (
               <button className={`category-pill${activeCategory === category ? " category-active" : ""}`} key={category} onClick={() => setActiveCategory(category)}>
                 {index === 0 && <Icon name="grid" size={15} />}
+                {category === "Bestsellers" && <span className="bestseller-sparkle" aria-hidden="true">✦</span>}
                 {category}
                 {index === 0 && <span className="category-count">{products.length}</span>}
               </button>
@@ -292,7 +367,7 @@ function App() {
                 <article className="product-card" key={product.id}>
                   <div className="product-photo" style={{ backgroundColor: product.color }}>
                     <button className="product-image-button" onClick={() => { setSelectedProduct(product); setDetailQuantity(1); }} aria-label={`View ${product.name} details`}>
-                      <img src={imageUrl(product.image)} alt={product.alt} loading="lazy" />
+                      <ProductVisual product={product} />
                       {product.tag && <span className="product-tag">{product.tag}</span>}
                     </button>
                     <button className={`favorite-button${favorites.includes(product.id) ? " favorite-active" : ""}`} aria-label={`${favorites.includes(product.id) ? "Remove" : "Add"} ${product.name} ${favorites.includes(product.id) ? "from" : "to"} favorites`} onClick={() => setFavorites((current) => current.includes(product.id) ? current.filter((id) => id !== product.id) : [...current, product.id])}>
@@ -305,10 +380,10 @@ function App() {
                   <div className="product-info">
                     <div className="product-title-row">
                       <button className="product-name" onClick={() => { setSelectedProduct(product); setDetailQuantity(1); }}>{product.name}</button>
-                      <span className="product-price">{formatPrice(product.price)}</span>
+                      <span className="product-price">{product.price === null ? "Price on WhatsApp" : formatPrice(product.price)}</span>
                     </div>
                     <p>{product.description}</p>
-                    <div className="product-meta"><span>{product.weight} <i /> {product.category}</span><button onClick={() => addToCart(product)}>Add to cart <Icon name="arrow" size={14} /></button></div>
+                    <div className="product-meta"><span>{product.weight || "Pack size TBC"} <i /> {product.category}</span><button onClick={() => addToCart(product)}>Add to cart <Icon name="arrow" size={14} /></button></div>
                   </div>
                 </article>
               ))}
@@ -349,7 +424,7 @@ function App() {
         <section className="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
           <button className="icon-button modal-close" onClick={() => setSelectedProduct(null)} aria-label="Close product details"><Icon name="close" /></button>
           <div className="detail-image" style={{ backgroundColor: selectedProduct.color }}>
-            <img src={imageUrl(selectedProduct.image)} alt={selectedProduct.alt} />
+            <ProductVisual product={selectedProduct} />
             {selectedProduct.tag && <span className="product-tag">{selectedProduct.tag}</span>}
           </div>
           <div className="detail-copy">
@@ -357,12 +432,12 @@ function App() {
             <h2 id="product-modal-title">{selectedProduct.name}</h2>
             <p className="detail-description">{selectedProduct.description}. Light, crunchy, and ready for whenever snack o'clock hits.</p>
             <div className="detail-perks"><span><Icon name="leaf" size={16} /> Real fruit</span><span><Icon name="heart" size={15} /> Made for sharing</span></div>
-            <div className="detail-weight"><span>Pack size</span><strong>{selectedProduct.weight}</strong></div>
+            <div className="detail-weight"><span>Pack size</span><strong>{selectedProduct.weight || "Confirm on WhatsApp"}</strong></div>
             <div className="detail-bottom">
-              <div className="detail-price">{formatPrice(selectedProduct.price)}<span> / pack</span></div>
+              <div className={`detail-price${selectedProduct.price === null ? " detail-price-unset" : ""}`}>{selectedProduct.price === null ? "Price on WhatsApp" : <>{formatPrice(selectedProduct.price)}<span> / pack</span></>}</div>
               <div className="quantity-control"><button onClick={() => setDetailQuantity((quantity) => Math.max(1, quantity - 1))} aria-label="Decrease quantity"><Icon name="minus" size={14} /></button><span>{detailQuantity}</span><button onClick={() => setDetailQuantity((quantity) => quantity + 1)} aria-label="Increase quantity"><Icon name="plus" size={14} /></button></div>
             </div>
-            <button className="button button-dark checkout-button" onClick={() => { addToCart(selectedProduct, detailQuantity); setSelectedProduct(null); }}>Add to cart · {formatPrice(selectedProduct.price * detailQuantity)} <Icon name="arrow" size={17} /></button>
+            <button className="button button-dark checkout-button" onClick={() => { addToCart(selectedProduct, detailQuantity); setSelectedProduct(null); }}>Add to cart{selectedProduct.price === null ? "" : ` · ${formatPrice(selectedProduct.price * detailQuantity)}`} <Icon name="arrow" size={17} /></button>
           </div>
         </section>
       )}
@@ -385,14 +460,14 @@ function App() {
               <div className="cart-items">
                 {cartItems.map((item) => (
                   <div className="cart-item" key={item.id}>
-                    <img src={imageUrl(item.image)} alt={item.alt} />
-                    <div className="cart-item-copy"><h3>{item.name}</h3><p>{item.weight} · {formatPrice(item.price)}</p><div className="quantity-control"><button onClick={() => updateQuantity(item.id, -1)} aria-label={`Remove one ${item.name}`}><Icon name="minus" size={14} /></button><span>{item.quantity}</span><button onClick={() => updateQuantity(item.id, 1)} aria-label={`Add one ${item.name}`}><Icon name="plus" size={14} /></button></div></div>
-                    <strong>{formatPrice(item.price * item.quantity)}</strong>
+                    <div className="cart-item-thumb"><ProductVisual product={item} /></div>
+                    <div className="cart-item-copy"><h3>{item.name}</h3><p>{item.weight || "Pack size TBC"} · {item.price === null ? "Price on WhatsApp" : formatPrice(item.price)}</p><div className="quantity-control"><button onClick={() => updateQuantity(item.id, -1)} aria-label={`Remove one ${item.name}`}><Icon name="minus" size={14} /></button><span>{item.quantity}</span><button onClick={() => updateQuantity(item.id, 1)} aria-label={`Add one ${item.name}`}><Icon name="plus" size={14} /></button></div></div>
+                    <strong>{item.price === null ? "Confirm price" : formatPrice(item.price * item.quantity)}</strong>
                   </div>
                 ))}
               </div>
               <div className="delivery-note"><span className="delivery-note-icon">✳</span><div><strong>Delivery, made simple</strong><p>We’ll confirm delivery details with you on WhatsApp.</p></div></div>
-              <div className="cart-summary"><div><span>Subtotal</span><strong>{formatPrice(subtotal)}</strong></div><p>Shipping, if applicable, will be confirmed when you place your order.</p><button className="button button-dark checkout-button" onClick={() => { setCartOpen(false); setCheckoutOpen(true); }}>Continue to checkout <Icon name="arrow" size={17} /></button></div>
+              <div className="cart-summary"><div><span>Subtotal</span><strong>{subtotal === null ? "Confirm on WhatsApp" : formatPrice(subtotal)}</strong></div><p>Shipping and any unlisted prices or pack sizes will be confirmed when you place your order.</p><button className="button button-dark checkout-button" onClick={() => { setCartOpen(false); setCheckoutOpen(true); }}>Continue to checkout <Icon name="arrow" size={17} /></button></div>
             </>
           )}
         </aside>
@@ -412,7 +487,7 @@ function App() {
               <label className="field field-full">PIN code<input name="pincode" inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{6}" placeholder="6-digit PIN code" required /></label>
               <label className="field field-full">Anything else? <span className="optional">(optional)</span><textarea name="note" rows="2" placeholder="Order notes or delivery instructions" /></label>
             </div>
-            <div className="checkout-total"><span>{itemCount} {itemCount === 1 ? "item" : "items"} · Order total</span><strong>{formatPrice(subtotal)}</strong></div>
+            <div className="checkout-total"><span>{itemCount} {itemCount === 1 ? "item" : "items"} · Order total</span><strong>{subtotal === null ? "Confirm on WhatsApp" : formatPrice(subtotal)}</strong></div>
             <button className="button button-dark checkout-button" type="submit">Order now on WhatsApp <Icon name="arrow" size={17} /></button>
             <p className="checkout-disclaimer">Your order details will open in WhatsApp, ready to send to Toucanzy Bite.</p>
           </form>
