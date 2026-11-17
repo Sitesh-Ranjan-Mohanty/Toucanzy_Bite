@@ -11,8 +11,8 @@ const products = [
     tag: "BESTSELLER",
     bestSeller: true,
     color: "#f7e9c9",
-    image: "photo-1553279768-865429fa0078",
-    alt: "Golden ripe mango",
+    image: "/images/mango.webp",
+    alt: "Crunchy freeze-dried mango slices",
   },
   {
     id: "pink-guava",
@@ -23,8 +23,8 @@ const products = [
     category: "Tropical",
     tag: "",
     color: "#f7e6df",
-    emoji: "🍐",
-    alt: "Pink guava",
+    image: "/images/pink-guava.webp",
+    alt: "Pink guava fruit",
   },
   {
     id: "jackfruit",
@@ -35,8 +35,8 @@ const products = [
     category: "Tropical",
     tag: "",
     color: "#f5ebc9",
-    emoji: "🍈",
-    alt: "Fresh jackfruit",
+    image: "/images/jackfruit.webp",
+    alt: "Dried jackfruit pieces",
   },
   {
     id: "apple",
@@ -47,8 +47,8 @@ const products = [
     category: "Orchard",
     tag: "",
     color: "#e8eddc",
-    image: "photo-1560806887-1e4cd0b6cbd6",
-    alt: "Fresh red and green apples",
+    image: "/images/apple.webp",
+    alt: "Apple slices drying on a dehydrator tray",
   },
   {
     id: "banana",
@@ -59,8 +59,8 @@ const products = [
     category: "Orchard",
     tag: "",
     color: "#f2edce",
-    image: "photo-1571771894821-ce9b6c11b08e",
-    alt: "Fresh yellow bananas",
+    image: "/images/banana.webp",
+    alt: "Dried banana slices on a tray",
   },
   {
     id: "pineapple",
@@ -71,8 +71,8 @@ const products = [
     category: "Tropical",
     tag: "",
     color: "#f4e9bd",
-    image: "photo-1550258987-190a2d41a8ba",
-    alt: "Fresh golden pineapple",
+    image: "/images/pineapple.webp",
+    alt: "Crispy dried pineapple rings",
   },
   {
     id: "strawberry",
@@ -83,8 +83,8 @@ const products = [
     category: "Berries",
     tag: "",
     color: "#f6e5df",
-    image: "photo-1464965911861-746a04b4bca6",
-    alt: "Fresh ripe strawberries",
+    image: "/images/strawberry.webp",
+    alt: "Bright red freeze-dried strawberry slices",
   },
   {
     id: "kiwi",
@@ -95,8 +95,8 @@ const products = [
     category: "Berries",
     tag: "",
     color: "#e8eedb",
-    emoji: "🥝",
-    alt: "Fresh kiwi fruit",
+    image: "/images/kiwi.webp",
+    alt: "Dried kiwi slices",
   },
   {
     id: "java-plum",
@@ -107,8 +107,8 @@ const products = [
     category: "Berries",
     tag: "",
     color: "#e8e4f1",
-    emoji: "🫐",
-    alt: "Fresh java plums",
+    image: "/images/java-plum.webp",
+    alt: "Fresh Java plums",
   },
   {
     id: "custard-apple",
@@ -119,13 +119,11 @@ const products = [
     category: "Orchard",
     tag: "",
     color: "#edf0df",
-    emoji: "🍏",
-    alt: "Fresh custard apple",
+    image: "/images/custard-apple.webp",
+    alt: "Fresh custard apples",
   },
 ];
 
-const imageUrl = (id) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=700&q=85`;
 const formatPrice = (amount) =>
   `₹${amount.toLocaleString("en-IN")}`;
 
@@ -169,19 +167,8 @@ function Brand({ light = false }) {
 }
 
 function ProductVisual({ product }) {
-  if (product.image) {
-    return <img src={imageUrl(product.image)} alt={product.alt} loading="lazy" />;
-  }
   return (
-    <div
-      className="fruit-art"
-      role="img"
-      aria-label={product.alt}
-      style={{ backgroundColor: product.color }}
-    >
-      <span>{product.emoji}</span>
-      <i aria-hidden="true">✳</i>
-    </div>
+    <img src={product.image} alt={product.alt} loading="lazy" />
   );
 }
 
@@ -328,7 +315,7 @@ function App() {
           <div className="promo-art">
             <span className="promo-orbit promo-orbit-one" />
             <span className="promo-orbit promo-orbit-two" />
-            <img src={imageUrl("photo-1553279768-865429fa0078")} alt="Golden ripe mango, our bestselling fruit" />
+            <img src="/images/mango.webp" alt="Golden freeze-dried mango slices, our bestselling fruit" />
             <span className="promo-badge">OUR<br />BESTSELLER</span>
             <span className="promo-sparkle promo-sparkle-one">✳</span>
             <span className="promo-sparkle promo-sparkle-two">✳</span>
