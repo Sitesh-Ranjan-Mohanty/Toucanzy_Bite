@@ -234,6 +234,7 @@ function App() {
   const [selectedComboFruits, setSelectedComboFruits] = useState([]);
   const [detailQuantity, setDetailQuantity] = useState(1);
   const [activeCategory, setActiveCategory] = useState("All fruits");
+  const [activeSection, setActiveSection] = useState("home");
   const [searchQuery, setSearchQuery] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [notice, setNotice] = useState("");
@@ -245,6 +246,34 @@ function App() {
   useEffect(() => {
     localStorage.setItem("toucanzy-delivery-state", deliveryState);
   }, [deliveryState]);
+
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const sectionIds = ["home", "shop", "story"];
+      const activationLine = 110;
+      let currentSection = "home";
+
+      for (const sectionId of sectionIds) {
+        const section = document.getElementById(sectionId);
+        if (section && section.getBoundingClientRect().top <= activationLine) {
+          currentSection = sectionId;
+        }
+      }
+
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        currentSection = "story";
+      }
+      setActiveSection(currentSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
 
   const cartItems = useMemo(() => Object.entries(cart).flatMap(([cartKey, quantity]) => {
     if (!quantity) return [];
@@ -347,9 +376,9 @@ function App() {
         <div className="header-inner">
           <Brand />
           <nav className="desktop-nav" aria-label="Main navigation">
-            <a className="nav-active" href="#home">Discover</a>
-            <a href="#shop">Shop fruits</a>
-            <a href="#story">Our story</a>
+            <a className={activeSection === "home" ? "nav-active" : ""} href="#home" onClick={() => setActiveSection("home")}>Discover</a>
+            <a className={activeSection === "shop" ? "nav-active" : ""} href="#shop" onClick={() => { setActiveCategory("All fruits"); setActiveSection("shop"); }}>Shop fruits</a>
+            <a className={activeSection === "story" ? "nav-active" : ""} href="#story" onClick={() => setActiveSection("story")}>Our story</a>
           </nav>
           <div className="header-actions">
             <a className="instagram-link" href="https://www.instagram.com/toucanzy_bite/" target="_blank" rel="noreferrer" aria-label="Toucanzy Bite on Instagram">
@@ -363,8 +392,8 @@ function App() {
         </div>
       </header>
 
-      <main className="app-main" id="home">
-        <section className="welcome-row">
+      <main className="app-main">
+        <section className="welcome-row" id="home">
           <div>
             <p className="welcome-kicker">A LITTLE CRUNCH GOES A LONG WAY</p>
             <h1>Good things,<br className="mobile-only" /> <span>good mood.</span></h1>
@@ -448,7 +477,61 @@ function App() {
           )}
         </section>
 
-        <section className="promise-row" id="story">
+        <section className="process-section" id="story">
+          <div className="process-heading">
+            <span className="section-kicker">OUR STORY · FRUIT PRESERVATION</span>
+            <h2>Three ways to <span>preserve fruit.</span></h2>
+            <p>Different preservation methods create different textures and storage needs. Here’s how freeze-dried, frozen, and dehydrated fruit compare.</p>
+          </div>
+          <div className="process-grid">
+            <article className="process-card">
+              <span className="process-number">01 · FREEZE-DRIED</span>
+              <h3>Our process</h3>
+              <p>Fruit is frozen, then dried under vacuum so ice leaves as vapour. The result is typically light and crisp. This is the process used for Toucanzy Bite fruit.</p>
+              <span className="process-highlight">Our featured method</span>
+            </article>
+            <article className="process-card">
+              <span className="process-number">02 · FROZEN</span>
+              <h3>Kept frozen</h3>
+              <p>Freezing stores fruit with most of its water still present as ice. It remains moist when thawed and needs freezer storage.</p>
+            </article>
+            <article className="process-card">
+              <span className="process-number">03 · DEHYDRATED</span>
+              <h3>Warm-air dried</h3>
+              <p>Conventional dehydration uses heat and airflow to remove moisture. Depending on the fruit and method, the texture is often denser or chewier.</p>
+            </article>
+          </div>
+          <div className="process-method-heading">
+            <span className="section-kicker">OUR PROCESS</span>
+            <h3>How we make Toucanzy Bite freeze-dried fruit</h3>
+          </div>
+          <div className="freeze-dry-steps">
+            <article className="process-card process-card-featured">
+              <span className="process-number">STEP 01</span>
+              <h3>Select, prepare & freeze</h3>
+              <p>Fruit is selected, cleaned, and cut into pieces, then frozen. Freezing prepares the fruit for drying while helping it hold its shape.</p>
+            </article>
+            <article className="process-card process-card-featured">
+              <span className="process-number">STEP 02</span>
+              <h3>Dry under vacuum</h3>
+              <p>In a low-pressure chamber, ice turns directly into water vapour through sublimation. A further drying stage removes more moisture, leaving a light, crisp texture.</p>
+            </article>
+            <article className="process-card process-card-featured">
+              <span className="process-number">STEP 03</span>
+              <h3>Seal & store well</h3>
+              <p>Once dry, the fruit needs protection from moisture. Store it in its sealed pack in a cool, dry place, reseal promptly after opening, and follow the pack’s storage and best-before guidance.</p>
+            </article>
+          </div>
+          <div className="process-storage">
+            <span className="process-storage-icon"><Icon name="leaf" size={20} /></span>
+            <div>
+              <strong>Storage matters</strong>
+              <p>Freeze-dried fruit readily absorbs moisture from the air, so keep it in its original sealed, moisture-protective packaging until use. Shelf life and nutrient retention depend on the fruit, processing, and packaging; check the best-before date and storage directions on your pack rather than relying on a single shelf-life estimate.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="promise-row">
           <div className="promise-icon"><Icon name="leaf" size={21} /></div>
           <div><strong>Fruit first. Always.</strong><p>Real-fruit goodness with a satisfying little crunch.</p></div>
           <span className="promise-separator" />
@@ -465,10 +548,10 @@ function App() {
       </footer>
 
       <nav className="mobile-bottom-nav" aria-label="Quick navigation">
-        <a className="bottom-nav-active" href="#home"><Icon name="home" size={19} /><span>Home</span></a>
-        <a href="#shop" onClick={() => setActiveCategory("All fruits")}><Icon name="grid" size={19} /><span>Discover</span></a>
+        <a className={activeSection === "home" ? "bottom-nav-active" : ""} href="#home" onClick={() => setActiveSection("home")}><Icon name="home" size={19} /><span>Home</span></a>
+        <a className={activeSection === "shop" ? "bottom-nav-active" : ""} href="#shop" onClick={() => { setActiveCategory("All fruits"); setActiveSection("shop"); }}><Icon name="grid" size={19} /><span>Shop</span></a>
+        <a className={activeSection === "story" ? "bottom-nav-active" : ""} href="#story" onClick={() => setActiveSection("story")}><Icon name="leaf" size={19} /><span>Our story</span></a>
         <button onClick={() => setCartOpen(true)} aria-label={`Open cart, ${itemCount} items`}><span className="bottom-bag-icon"><Icon name="bag" size={20} />{itemCount > 0 && <i>{itemCount}</i>}</span><span>My bag</span></button>
-        <a href="https://www.instagram.com/toucanzy_bite/" target="_blank" rel="noreferrer"><Icon name="instagram" size={19} /><span>Instagram</span></a>
       </nav>
 
       {notice && <div className="toast" role="status">{notice}</div>}

@@ -121,6 +121,26 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .no-results p { margin: 0 0 13px; color: var(--muted); font-size: 11px; }
 .text-link { display: inline-flex; align-items: center; gap: 7px; border: 0; padding: 0; background: none; color: #795399; font-size: 10px; font-weight: 700; cursor: pointer; }
 
+.process-section { margin: 0 0 26px; padding: 28px; scroll-margin-top: 85px; border: 1px solid #eeeaf4; border-radius: 20px; background: #fff; box-shadow: 0 8px 26px rgba(51, 42, 69, .035); }
+.process-heading { max-width: 650px; margin-bottom: 20px; }
+.process-heading h2 { margin: 7px 0; color: #282630; font-size: clamp(22px, 3.5vw, 30px); letter-spacing: -1px; }
+.process-heading h2 span { color: #8962aa; }
+.process-heading > p { margin: 0; color: #77727f; font-size: 11px; line-height: 1.7; }
+.freeze-dry-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.process-method-heading { margin: 22px 0 11px; }
+.process-method-heading h3 { margin: 5px 0 0; color: #312d38; font-size: 15px; }
+.process-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.process-card { min-width: 0; padding: 17px; border: 1px solid #eeeaf3; border-radius: 14px; background: #fbfafd; }
+.process-card-featured { border-color: #d7c3e9; background: linear-gradient(145deg, #f8f2fd, #fff 75%); box-shadow: inset 0 3px #a884d0; }
+.process-number { color: #8b8295; font-size: 8px; font-weight: 700; letter-spacing: .8px; }
+.process-card h3 { margin: 9px 0 7px; color: #312d38; font-size: 15px; }
+.process-card p { margin: 0; color: #77727f; font-size: 9px; line-height: 1.7; }
+.process-highlight { display: inline-block; margin-top: 12px; padding: 7px 9px; border-radius: 8px; background: #eee5f8; color: #654288; font-size: 8px; font-weight: 700; }
+.process-storage { display: flex; align-items: flex-start; gap: 11px; margin-top: 14px; padding: 14px; border: 1px solid #e8ebd9; border-radius: 13px; background: #f8f9f1; }
+.process-storage-icon { width: 32px; height: 32px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 10px; background: #edf0df; color: #718048; }
+.process-storage strong { color: #3b412e; font-size: 10px; }
+.process-storage p { margin: 5px 0 0; color: #737767; font-size: 9px; line-height: 1.65; }
+
 .promise-row { min-height: 83px; display: flex; align-items: center; gap: 12px; margin-bottom: 32px; padding: 16px 21px; border: 1px solid #eeeaf4; border-radius: 17px; background: #fff; }
 .promise-icon { width: 37px; height: 37px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 12px; background: #f2ecf9; color: #7d58a1; }
 .promise-icon-sun { background: #f6f2d9; color: #99954d; font-size: 20px; }
@@ -258,6 +278,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .promise-row > div:nth-of-type(2), .promise-row > div:nth-of-type(4) { flex: 1; }
   .promise-separator { display: none; }
   .promise-instagram { width: 100%; margin-left: 47px; }
+  .process-section { padding: 21px; }
+  .freeze-dry-steps, .process-grid { grid-template-columns: 1fr; gap: 9px; }
+  .process-card { padding: 14px; }
 }
 
 @media (max-width: 520px) {
@@ -322,6 +345,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .promise-row > div:nth-of-type(2) strong, .promise-row > div:nth-of-type(4) strong { font-size: 8px; }
   .promise-row > div:nth-of-type(2) p, .promise-row > div:nth-of-type(4) p { font-size: 7px; line-height: 1.4; }
   .promise-instagram { margin-left: 39px; font-size: 8px; }
+  .process-section { margin-bottom: 20px; padding: 16px; border-radius: 15px; scroll-margin-top: 70px; }
+  .process-heading { margin-bottom: 14px; }
+  .process-heading h2 { font-size: 21px; }
+  .process-heading > p { font-size: 9px; }
+  .process-card p, .process-storage p { font-size: 8px; }
+  .process-storage { padding: 11px; }
   .site-footer { min-height: 61px; gap: 10px; padding: 7px 14px; }
   .site-footer .brand-logo { width: 43px; height: 43px; }
   .copyright { font-size: 7px; }
