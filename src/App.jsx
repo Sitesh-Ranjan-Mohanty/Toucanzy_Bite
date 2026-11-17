@@ -163,7 +163,7 @@ function Icon({ name, size = 20 }) {
 function Brand({ light = false }) {
   return (
     <a className={`brand${light ? " brand-light" : ""}`} href="#home" aria-label="Toucanzy Bite home">
-      <img className="brand-logo" src="/toucanzy-bite-logo.png" alt="" />
+      <img className="brand-logo" src="/Toucanzy_Bite_Logo_Transparent.png" alt="" />
     </a>
   );
 }
