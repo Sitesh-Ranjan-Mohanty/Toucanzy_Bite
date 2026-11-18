@@ -278,7 +278,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .promise-row { flex-wrap: wrap; gap: 10px; padding: 13px; }
   .promise-row > div:nth-of-type(2), .promise-row > div:nth-of-type(4) { flex: 1; }
   .promise-separator { display: none; }
-  .promise-instagram { width: 100%; margin-left: 47px; }
+  .promise-instagram { width: 100%; min-width: 0; margin-left: 0; }
   .process-section { padding: 21px; }
   .freeze-dry-steps, .process-grid { grid-template-columns: 1fr; gap: 9px; }
   .process-card { padding: 14px; }
@@ -346,7 +346,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .promise-icon-sun { font-size: 17px; }
   .promise-row > div:nth-of-type(2) strong, .promise-row > div:nth-of-type(4) strong { font-size: 8px; }
   .promise-row > div:nth-of-type(2) p, .promise-row > div:nth-of-type(4) p { font-size: 7px; line-height: 1.4; }
-  .promise-instagram { margin-left: 39px; font-size: 8px; }
+  .promise-instagram { margin-left: 0; font-size: 8px; }
   .process-section { margin-bottom: 20px; padding: 16px; border-radius: 15px; scroll-margin-top: 70px; }
   .process-heading { margin-bottom: 14px; }
   .process-heading h2 { font-size: 21px; }

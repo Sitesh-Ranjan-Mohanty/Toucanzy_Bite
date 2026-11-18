@@ -8,7 +8,7 @@ export const products = [
     tag: "BESTSELLER",
     bestSeller: true,
     color: "#f7e9c9",
-    image: "/images/mango-user.webp",
+    image: "/images/mango-latest.webp",
     alt: "Crunchy freeze-dried mango slices",
   },
   {
@@ -19,7 +19,7 @@ export const products = [
     category: "Tropical",
     tag: "",
     color: "#f7e6df",
-    image: "/images/pink-guava-user.webp",
+    image: "/images/pink-guava-latest.webp",
     alt: "Pink guava fruit",
   },
   {
@@ -30,7 +30,7 @@ export const products = [
     category: "Tropical",
     tag: "",
     color: "#f5ebc9",
-    image: "/images/jackfruit-grid.webp",
+    image: "/images/jackfruit-latest.webp",
     alt: "Dried jackfruit pieces",
   },
   {
@@ -41,8 +41,8 @@ export const products = [
     category: "Orchard",
     tag: "",
     color: "#e8eddc",
-    image: "/images/apple-grid.webp",
-    alt: "Freeze-dried apple pieces with fresh apple",
+    image: "/images/apple-latest.webp",
+    alt: "Freeze-dried apple slices",
   },
   {
     id: "banana",
@@ -52,7 +52,7 @@ export const products = [
     category: "Orchard",
     tag: "",
     color: "#f2edce",
-    image: "/images/banana-user.webp",
+    image: "/images/banana-latest.webp",
     alt: "Dried banana slices on a tray",
   },
   {
@@ -63,7 +63,7 @@ export const products = [
     category: "Tropical",
     tag: "",
     color: "#f4e9bd",
-    image: "/images/pineapple-user.webp",
+    image: "/images/pineapple-latest.webp",
     alt: "Crispy dried pineapple rings",
   },
   {
@@ -74,7 +74,7 @@ export const products = [
     category: "Berries",
     tag: "",
     color: "#f6e5df",
-    image: "/images/strawberry-grid.webp",
+    image: "/images/strawberry-latest.webp",
     alt: "Bright red freeze-dried strawberry slices",
   },
   {
@@ -85,7 +85,7 @@ export const products = [
     category: "Berries",
     tag: "",
     color: "#e8eedb",
-    image: "/images/kiwi-grid.webp",
+    image: "/images/kiwi-latest.webp",
     alt: "Dried kiwi slices",
   },
   {
@@ -96,7 +96,7 @@ export const products = [
     category: "Berries",
     tag: "",
     color: "#e8e4f1",
-    image: "/images/black-jamun-grid.webp",
+    image: "/images/black-jamun-latest.webp",
     alt: "Freeze-dried black jamun pieces with fresh jamun",
   },
   {
@@ -107,7 +107,7 @@ export const products = [
     category: "Orchard",
     tag: "",
     color: "#edf0df",
-    image: "/images/custard-apple-grid.webp",
+    image: "/images/custard-apple-latest.webp",
     alt: "Freeze-dried custard apple pieces with fresh custard apple",
   },
   {
@@ -118,7 +118,7 @@ export const products = [
     category: "Combos",
     tag: "BEST VALUE",
     color: "#f4e8d9",
-    image: "/images/fruit-variety-grid.webp",
+    image: "/images/fruit-cube-collection.webp",
     alt: "A colourful mix of dried fruit pieces",
     isCombo: true,
   },
@@ -130,7 +130,7 @@ export const products = [
     category: "Combos",
     tag: "FRUITY FAVE",
     color: "#f4e8d9",
-    image: "/images/fruit-variety-grid.webp",
+    image: "/images/fruit-cube-collection.webp",
     alt: "A mix of dried fruit for a snack combo",
     isCombo: true,
   },
