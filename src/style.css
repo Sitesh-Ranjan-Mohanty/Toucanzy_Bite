@@ -199,7 +199,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .checkout-button { width: 100%; min-height: 45px; justify-content: space-between; padding: 0 15px; border-radius: 12px; }
 
 .product-modal { position: fixed; z-index: 22; top: 50%; left: 50%; width: min(740px, calc(100% - 36px)); max-height: min(88vh, 590px); display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 20px; background: #fff; box-shadow: 0 22px 80px rgba(31, 24, 42, .2); transform: translate(-50%, -50%); animation: modal-in .2s ease-out; }
-.modal-close { position: absolute; z-index: 2; top: 13px; right: 13px; }
+.modal-close { position: absolute; z-index: 3; top: 13px; right: 13px; border: 1px solid rgba(115, 91, 138, .12); border-radius: 50%; background: rgba(255, 255, 255, .96); box-shadow: 0 3px 12px rgba(31, 24, 42, .14); }
 .detail-image { position: relative; min-height: 390px; overflow: hidden; }
 .detail-image > img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
 .detail-image .product-tag { top: 13px; bottom: auto; left: 13px; }
@@ -226,7 +226,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .combo-fruit-option:hover:not(:disabled) { border-color: #cbb4e1; }
 .combo-fruit-selected { border-color: #b99bd2; background: #f7f1fc; color: #654288; font-weight: 700; }
 .combo-fruit-option:disabled { opacity: .48; cursor: not-allowed; }
-.combo-fruit-check { width: 18px; height: 18px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid #ddd6e6; border-radius: 6px; background: #fff; color: #795399; font-size: 12px; }
+.combo-fruit-check { width: 20px; height: 20px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid #ddd6e6; border-radius: 7px; background: #fff; color: #795399; transition: background .18s, border-color .18s, color .18s, transform .18s; }
+.combo-fruit-selected .combo-fruit-check { transform: scale(1.05); border-color: #238847; background: #238847; color: #fff; }
 .combo-fruit-option small { margin-left: auto; color: #918c99; font-size: 8px; }
 .cart-item-copy .cart-combo-fruits { margin: 2px 0 6px; color: #765194; font-size: 8px; line-height: 1.45; white-space: normal; }
 .detail-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 16px 0; }
@@ -246,9 +247,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .checkout-total { margin: 15px 0 12px; padding-top: 13px; border-top: 1px solid #efedf3; font-size: 10px; }
 .checkout-total strong { font-size: 15px; }
 .checkout-disclaimer { margin: 9px 0 0; color: #898590; font-size: 8px; line-height: 1.5; text-align: center; }
-.toast { position: fixed; z-index: 30; right: 22px; bottom: 22px; padding: 12px 16px; border: 1px solid rgba(255,255,255,.15); border-radius: 12px; background: #28252f; color: white; font-size: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.14); animation: fade-in .2s ease-out; }
+.toast { position: fixed; z-index: 30; right: 22px; bottom: 22px; display: flex; align-items: center; gap: 10px; padding: 12px 16px 12px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 12px; background: #28252f; color: white; font-size: 10px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,.2); animation: toast-enter .35s cubic-bezier(.2,.8,.2,1) both; }
+.toast-check { width: 30px; height: 30px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; background: #e3f7e9; color: #16823b; }
+.toast-check svg { width: 19px; height: 19px; overflow: visible; }
+.toast-check path { stroke: currentColor; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 24; stroke-dashoffset: 24; animation: check-draw .35s .12s ease-out forwards; }
 
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes toast-enter { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes check-draw { to { stroke-dashoffset: 0; } }
 @keyframes slide-in { from { transform: translateX(24px); opacity: .8; } to { transform: translateX(0); opacity: 1; } }
 @keyframes modal-in { from { opacity: .65; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
 
@@ -334,11 +340,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .quick-add { right: 7px; bottom: 7px; width: 30px; height: 30px; border-radius: 9px; }
   .quick-add svg { width: 16px; }
   .product-info { padding: 9px 9px 10px; }
-  .product-name { font-size: 10px; }
+  .product-name { overflow: visible; font-size: 10px; line-height: 1.3; text-overflow: clip; white-space: normal; overflow-wrap: anywhere; }
   .product-price { font-size: 10px; }
-  .product-info > p { margin: 4px 0 9px; font-size: 8px; }
-  .product-meta { padding-top: 7px; font-size: 7px; }
-  .product-meta button { gap: 2px; font-size: 8px; }
+  .product-info > p { overflow: visible; margin: 4px 0 9px; font-size: 8px; line-height: 1.4; text-overflow: clip; white-space: normal; }
+  .product-meta { flex-wrap: wrap; row-gap: 6px; padding-top: 7px; font-size: 7px; }
+  .product-meta > span { width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  .product-meta button { gap: 2px; margin-left: auto; font-size: 8px; }
   .product-meta button svg { width: 11px; }
   .promise-row { gap: 8px; margin: 18px 0 20px; padding: 11px; border-radius: 14px; }
   .promise-icon { width: 31px; height: 31px; border-radius: 10px; }
@@ -369,7 +376,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .checkout-header h2 { font-size: 23px; }
   .form-grid { gap: 9px; }
   .product-modal { width: min(420px, calc(100% - 28px)); max-height: min(91vh, 680px); grid-template-columns: 1fr; overflow-y: auto; border-radius: 18px; }
-  .product-modal-combo .detail-copy { max-height: none; overflow-y: visible; }
+  .product-modal-combo { height: min(91vh, 680px); grid-template-rows: clamp(175px, 50vw, 230px) minmax(0, 1fr); overflow: hidden; }
+  .product-modal-combo .detail-copy { min-height: 0; align-self: stretch; max-height: none; overflow-y: auto; }
   .detail-image { min-height: 0; height: clamp(175px, 50vw, 230px); }
   .detail-copy { padding: 18px 18px 19px; }
   .detail-copy h2 { margin: 6px 0; font-size: 21px; }
@@ -380,7 +388,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .detail-bottom { margin: 11px 0; }
   .detail-price { font-size: 18px; }
   .detail-copy .checkout-button { min-height: 41px; }
-  .toast { right: 12px; bottom: 78px; left: 12px; padding: 11px 13px; border-radius: 10px; text-align: center; }
+  .toast { right: 12px; bottom: 78px; left: 12px; justify-content: center; padding: 11px 13px; border-radius: 10px; text-align: left; }
 }
 
 @media (max-width: 365px) {

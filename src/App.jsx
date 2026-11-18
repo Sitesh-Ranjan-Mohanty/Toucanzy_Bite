@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "./data/products.js";
 import {
   createOrderMessage,
@@ -7,6 +7,7 @@ import {
   loadCart,
 } from "./utils/store.js";
 import CartDrawer from "./components/CartDrawer.jsx";
+import CartConfirmation from "./components/CartConfirmation.jsx";
 import CheckoutModal from "./components/CheckoutModal.jsx";
 import MobileBottomNav from "./components/MobileBottomNav.jsx";
 import ProductModal from "./components/ProductModal.jsx";
@@ -28,7 +29,8 @@ function App() {
   const [activeCategory, setActiveCategory] = useState("All fruits");
   const [searchQuery, setSearchQuery] = useState("");
   const [favorites, setFavorites] = useState([]);
-  const [notice, setNotice] = useState("");
+  const [notice, setNotice] = useState(null);
+  const noticeId = useRef(0);
 
   // Keep the cart and delivery selection available between browser visits.
   useEffect(() => {
@@ -38,6 +40,12 @@ function App() {
   useEffect(() => {
     localStorage.setItem("toucanzy-delivery-state", deliveryState);
   }, [deliveryState]);
+
+  useEffect(() => {
+    if (!notice) return undefined;
+    const timeoutId = window.setTimeout(() => setNotice(null), 2400);
+    return () => window.clearTimeout(timeoutId);
+  }, [notice]);
 
   // Derive the numbers shown in the cart and checkout from its saved items.
   const cartItems = useMemo(() => getCartItems(cart), [cart]);
@@ -69,8 +77,7 @@ function App() {
       ? `:${products.filter((fruit) => fruitIds.includes(fruit.id)).map((fruit) => fruit.id).join(",")}`
       : "";
     updateQuantity(`${product.id}:${variant.id}${selection}`, quantity);
-    setNotice(`${product.name} added to your bag`);
-    window.setTimeout(() => setNotice(""), 2400);
+    setNotice({ id: ++noticeId.current, message: `${product.name} added to your cart` });
   };
 
   const placeOrder = (event) => {
@@ -132,7 +139,7 @@ function App() {
         onShopClick={handleShopClick}
       />
 
-      {notice && <div className="toast" role="status">{notice}</div>}
+      {notice && <CartConfirmation key={notice.id} message={notice.message} />}
       {(cartOpen || checkoutOpen || selectedProduct) && (
         <button className="overlay" aria-label="Close dialog" onClick={closeDialogs} />
       )}

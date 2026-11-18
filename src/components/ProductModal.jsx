@@ -50,7 +50,9 @@ export default function ProductModal({
                       isSelected ? current.filter((id) => id !== fruit.id) : [...current, fruit.id],
                     )}
                   >
-                    <span className="combo-fruit-check" aria-hidden="true">{isSelected ? "✓" : "+"}</span>
+                    <span className="combo-fruit-check" aria-hidden="true">
+                      {isSelected && <Icon name="check" size={13} />}
+                    </span>
                     <span>{fruit.name}</span>
                     <small>10 g</small>
                   </button>
