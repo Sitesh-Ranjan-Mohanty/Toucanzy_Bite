@@ -316,11 +316,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .promo-copy .button { min-height: 34px; gap: 7px; padding: 0 10px; border-radius: 10px; font-size: 8px; }
   .promo-copy .button svg { width: 13px; }
   .promo-footnote { margin-top: 9px; font-size: 6px; letter-spacing: .65px; }
-  .promo-art { right: -6%; width: 45%; }
-  .promo-art img, .promo-art video { width: clamp(126px, 39vw, 180px); height: clamp(126px, 39vw, 180px); border-width: 5px; }
+  .promo-art { right: 2%; width: 48%; }
+  .promo-art img, .promo-art video { width: clamp(104px, 34vw, 150px); height: clamp(104px, 34vw, 150px); border-width: 5px; }
   .promo-orbit-one { width: 190px; height: 125px; }
   .promo-orbit-two { width: 215px; height: 150px; }
-  .promo-badge { top: 17px; right: 1%; width: 43px; height: 43px; border-width: 3px; font-size: 6px; }
+  .promo-badge { top: 17px; right: 2%; width: 40px; height: 40px; border-width: 3px; font-size: 6px; }
   .promo-sparkle-one { top: 21px; left: -1%; font-size: 17px; }
   .promo-sparkle-two { right: 0; bottom: 15px; font-size: 23px; }
   .promo-decoration { bottom: -24px; left: 40%; font-size: 68px; }
@@ -394,7 +394,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 365px) {
   .app-main { width: calc(100% - 22px); }
   .promo-copy { width: 66%; padding-left: 13px; }
-  .promo-art { right: -12%; }
+  .promo-art { right: 2%; width: 48%; }
+  .promo-art img, .promo-art video { width: clamp(104px, 34vw, 124px); height: clamp(104px, 34vw, 124px); }
   .promo-copy p { max-width: 170px; }
   .product-meta > span { gap: 3px; font-size: 6px; }
   .product-meta button { font-size: 7px; }
