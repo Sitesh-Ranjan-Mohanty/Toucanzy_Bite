@@ -20,7 +20,7 @@ export default function CartDrawer({
     <aside className="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
       <div className="drawer-header">
         <div><span className="section-kicker">YOUR GOODIES</span><h2 id="cart-title">Your cart <span>({itemCount})</span></h2></div>
-        <button className="icon-button" onClick={onClose} aria-label="Close bag"><Icon name="close" /></button>
+        <button className="icon-button dialog-close" onClick={onClose} aria-label="Close bag"><Icon name="close" /></button>
       </div>
       {cartItems.length === 0 ? (
         <div className="empty-cart">

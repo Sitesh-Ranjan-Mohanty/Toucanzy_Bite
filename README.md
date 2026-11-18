@@ -21,7 +21,9 @@ checkout form that prepares an order message for WhatsApp at `+91 86883 26611`.
 
 ## Source layout
 
-- `src/main.jsx` starts React and enables browser URL routing.
+- `index.html` displays a randomly selected fruit loader while the app starts.
+- `src/main.jsx` starts React, enables browser URL routing, and dismisses the
+  initial loader.
 - `src/App.jsx` is the shared site shell: it owns cart/checkout state and renders
   the header, current route, shared promo section, footer, and dialogs.
 - `src/routes/AppRoutes.jsx` maps URLs to pages: `/` (home), `/shop`, and

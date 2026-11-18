@@ -11,3 +11,10 @@ createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </React.StrictMode>,
 );
+
+const pageLoader = document.getElementById("page-loader");
+window.setTimeout(() => {
+  if (!pageLoader) return;
+  pageLoader.classList.add("page-loader-hidden");
+  window.setTimeout(() => pageLoader.remove(), 320);
+}, 650);

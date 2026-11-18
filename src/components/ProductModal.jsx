@@ -18,7 +18,7 @@ export default function ProductModal({
 
   return (
     <section className={`product-modal${product.isCombo ? " product-modal-combo" : ""}`} role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
-      <button className="icon-button modal-close" onClick={onClose} aria-label="Close product details"><Icon name="close" /></button>
+      <button className="icon-button dialog-close" onClick={onClose} aria-label="Close product details"><Icon name="close" /></button>
       <div className="detail-image" style={{ backgroundColor: product.color }}>
         <ProductVisual product={product} />
         {product.tag && <span className="product-tag">{product.tag}</span>}
