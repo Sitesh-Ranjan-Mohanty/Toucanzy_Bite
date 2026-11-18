@@ -29,7 +29,7 @@ export default function HomePage() {
             loop
             muted
             playsInline
-            poster="/images/mango.webp"
+            poster="/images/mango-user.webp"
             aria-label="A looping Toucanzy Bite fruit video"
           >
             <source src="/discover-video.mp4" type="video/mp4" />
