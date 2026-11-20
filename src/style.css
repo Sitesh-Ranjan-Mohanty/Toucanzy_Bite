@@ -239,7 +239,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .combo-fruit-selected { border-color: #b99bd2; background: #f7f1fc; color: #654288; font-weight: 700; }
 .combo-fruit-option:disabled { opacity: .48; cursor: not-allowed; }
 .combo-fruit-check { width: 20px; height: 20px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid #ddd6e6; border-radius: 7px; background: #fff; color: #795399; transition: background .18s, border-color .18s, color .18s, transform .18s; }
-.combo-fruit-selected .combo-fruit-check { transform: scale(1.05); border-color: #238847; background: #238847; color: #fff; }
+.combo-fruit-selected .combo-fruit-check { transform: scale(1.05); border-color: #8962aa; background: #8962aa; color: #fff; }
 .combo-fruit-option small { margin-left: auto; color: #918c99; font-size: 8px; }
 .cart-item-copy .cart-combo-fruits { margin: 2px 0 6px; color: #765194; font-size: 8px; line-height: 1.45; white-space: normal; }
 .detail-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 16px 0; }

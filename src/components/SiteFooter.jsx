@@ -9,7 +9,6 @@ export default function SiteFooter() {
       <a href="https://www.instagram.com/toucanzy_bite/" target="_blank" rel="noreferrer" aria-label="Toucanzy Bite on Instagram">
         <Icon name="instagram" size={14} />
         <span>Instagram</span>
-        <Icon name="arrow" size={14} />
       </a>
     </footer>
   );
